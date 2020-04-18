@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 20px;
+  padding: 50px;
+
+  .title {
+    padding: 13px 0 20px 0;
+    color: rgba(59, 160, 221, 0.8);
+    font-size: 18px;
+  }
+
+  .availability {
+    margin-bottom: 50px;
+  }
+}

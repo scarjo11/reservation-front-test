@@ -1,18 +1,28 @@
 <form (ngSubmit)="onVerify()" [formGroup]="form">
-  <mat-form-field>
-    <mat-label>Choose a date</mat-label>
-    <input matInput [matDatepicker]="datepicker" formControlName="datepicker">
-    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-    <mat-datepicker #datepicker></mat-datepicker>
-    <mat-error *ngIf="form.controls.datepicker.invalid">
-      <span *ngIf="form.controls.datepicker.errors.required">This field is required</span>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>ResourcesID</mat-label>
-    <input matInput formControlName="resourceId" required>
-  </mat-form-field>
-  <button class="btn-save" color="warn" mat-fab type="submit" [disabled]="form.invalid">
-    <mat-icon>check</mat-icon>
-  </button>
+  <div class="container">
+    <div class="title">Select a date please : </div>
+    <p>date 1 : {{ date }}</p>
+    <p>date 2 : {{ date | date:'short'}}</p>
+    <div>
+      <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="datepicker" formControlName="datepicker">
+        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker></mat-datepicker>
+        <mat-error *ngIf="form.controls.datepicker.invalid">
+          <span *ngIf="form.controls.datepicker.errors.required">This field is required</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="availability">
+      <button  color="primary" type="submit" [disabled]="form.invalid" mat-flat-button>
+        Check availability
+      </button>
+    </div>
+
+    <div *ngIf="availability">
+      <div class="title">Choose a slot : </div>
+      <span>Mon timepicker pour choisir un créneau</span>
+    </div>
+  </div>
 </form>

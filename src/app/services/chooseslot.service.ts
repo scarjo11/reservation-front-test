@@ -10,8 +10,8 @@ export class ChooseslotService {
 
   path = 'http://localhost:8080/resource';
 
-  getAvailability(id: number, date: Date) {
-    return this.httpClient.get<any>(this.path + '/' + id + '/availabilty');
+  getAvailability(id: number, datetime) {
+    return this.httpClient.get<boolean>(this.path + '/' + id + '/availabilty', {params: datetime});
   }
 
   /*post(data) {

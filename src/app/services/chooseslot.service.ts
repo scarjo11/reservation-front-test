@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {DateTimeInterface} from '../models/datetime';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,10 @@ export class ChooseslotService {
   path = 'http://localhost:8080/resource';
 
   getAvailability(id: number, datetime) {
-    return this.httpClient.get<boolean>(this.path + '/' + id + '/availabilty', {params: datetime});
+    return this.httpClient.get<DateTimeInterface>(this.path + '/' + id + '/availabilty', {params: datetime});
   }
 
-  /*post(data) {
-    return this.httpClient.post<UserInterface>(this.path, data);
-  }*/
+  postReservation(id: number, startDatetime: string, endDatetime: string) {
+    return this.httpClient.post<boolean>(this.path + '/' + id + '/reserve', {startDatetime, endDatetime});
+  }
 }

@@ -17,11 +17,6 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {DatePipe} from '@angular/common';
 
-const appRootes: Routes = [
-  { path: 'slot', component: ChooseslotComponent},
-  { path: '**', redirectTo: 'books'}
-];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +27,6 @@ const appRootes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRootes),
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,

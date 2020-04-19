@@ -1,28 +1,46 @@
-<form (ngSubmit)="onVerify()" [formGroup]="form">
+<form (ngSubmit)="onVerify()" [formGroup]="formDate">
   <div class="container">
     <div class="title">Select a date please : </div>
-    <p>date 1 : {{ date }}</p>
-    <p>date 2 : {{ date | date:'short'}}</p>
     <div>
       <mat-form-field>
         <mat-label>Choose a date</mat-label>
         <input matInput [matDatepicker]="datepicker" formControlName="datepicker">
         <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
         <mat-datepicker #datepicker></mat-datepicker>
-        <mat-error *ngIf="form.controls.datepicker.invalid">
-          <span *ngIf="form.controls.datepicker.errors.required">This field is required</span>
+        <mat-error *ngIf="formDate.controls.datepicker.invalid">
+          <span *ngIf="formDate.controls.datepicker.errors.required">This field is required</span>
         </mat-error>
       </mat-form-field>
     </div>
     <div class="availability">
-      <button  color="primary" type="submit" [disabled]="form.invalid" mat-flat-button>
+      <button  color="primary" type="submit" [disabled]="formDate.invalid" mat-flat-button>
         Check availability
       </button>
     </div>
-
-    <div *ngIf="availability">
-      <div class="title">Choose a slot : </div>
-      <span>Mon timepicker pour choisir un créneau</span>
-    </div>
   </div>
 </form>
+
+
+<div *ngIf="availability">
+  <form (ngSubmit)="onSubmit()" [formGroup]="formTime">
+    <div class="container">
+    <div class="title">Select a slot please : </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Choose a start time</mat-label>
+          <input matInput type="time" [matDatepicker]="startTimePicker" formControlName="startTimePicker">
+          <mat-datepicker-toggle matSuffix [for]="startTimePicker"></mat-datepicker-toggle>
+          <mat-datepicker #startTimePicker></mat-datepicker>
+          <mat-error *ngIf="formTime.controls.startTimePicker.invalid">
+            <span *ngIf="formTime.controls.startTimePicker.errors.required">This field is required</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="availability">
+        <button  color="primary" type="submit" [disabled]="formTime.invalid" mat-flat-button>
+          Check availability
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

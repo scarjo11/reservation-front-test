@@ -1,7 +1,7 @@
 <form (ngSubmit)="onVerify()" [formGroup]="formDate">
   <div class="container">
     <div class="title">Select a date please : </div>
-    <div>
+    <div class="row">
       <mat-form-field>
         <mat-label>Choose a date</mat-label>
         <input matInput [matDatepicker]="datepicker" formControlName="datepicker">
@@ -24,21 +24,25 @@
 <div *ngIf="availability">
   <form (ngSubmit)="onSubmit()" [formGroup]="formTime">
     <div class="container">
-    <div class="title">Select a slot please : </div>
-      <div>
+      <div class="title">Select a slot please : </div>
+      <div class="row">
         <mat-form-field>
-          <mat-label>Choose a start time</mat-label>
-          <input matInput type="time" [matDatepicker]="startTimePicker" formControlName="startTimePicker">
-          <mat-datepicker-toggle matSuffix [for]="startTimePicker"></mat-datepicker-toggle>
-          <mat-datepicker #startTimePicker></mat-datepicker>
-          <mat-error *ngIf="formTime.controls.startTimePicker.invalid">
-            <span *ngIf="formTime.controls.startTimePicker.errors.required">This field is required</span>
-          </mat-error>
+          <mat-label>From</mat-label>
+          <input matInput [ngxTimepicker]="startTimePicker" [format]="24"  formControlName="startDatetime">
+          <ngx-material-timepicker #startTimePicker></ngx-material-timepicker>
+          <mat-icon matSuffix>av_timer</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>To</mat-label>
+          <input matInput [ngxTimepicker]="endTimePicker" [format]="24" formControlName="endDatetime">
+          <ngx-material-timepicker #endTimePicker></ngx-material-timepicker>
+          <mat-icon matSuffix>av_timer</mat-icon>
         </mat-form-field>
       </div>
       <div class="availability">
         <button  color="primary" type="submit" [disabled]="formTime.invalid" mat-flat-button>
-          Check availability
+          Book
         </button>
       </div>
     </div>

@@ -11,7 +11,7 @@ export class SnackBarService {
 
   public addMessage(message: string): void {
     const config = new MatSnackBarConfig();
-    config.duration = 4000;
+    config.duration = 5000;
 
     this.snackBar.open(message, null, config);
   }

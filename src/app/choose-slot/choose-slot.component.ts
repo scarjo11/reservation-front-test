@@ -14,9 +14,9 @@ import {take} from 'rxjs/operators';
 })
 export class ChooseSlotComponent {
 
+  resourceId = Constants.RESOURCE_ID;
   formDate: FormGroup;
   formTime: FormGroup;
-  resourceId = Constants.RESOURCE_ID;
   availability: boolean;
   dateToSend = '';
 
@@ -45,10 +45,10 @@ export class ChooseSlotComponent {
       .subscribe((availability: DateTimeInterface) => {
           this.availability = availability.available;
           if (!!this.availability) {
-            this.snackBarService.addMessage('This date is available !');
+            this.snackBarService.addMessage(Constants.AVAILABLE_DATE);
             return;
           }
-          this.snackBarService.addMessage('Oups, you can\'t take this date...');
+          this.snackBarService.addMessage(Constants.UNAVAILABLE_DATE);
         },
         errorMessage => this.snackBarService.addMessage(errorMessage.error.error)
       );
@@ -59,13 +59,13 @@ export class ChooseSlotComponent {
       .pipe(take(1))
       .subscribe((response: DateTimeInterface) => {
           if (!!response.success) {
-            this.snackBarService.addMessage('Your slot has been booked with success !!!');
+            this.snackBarService.addMessage(Constants.BOOKED_SLOT);
             this.availability = false;
             this.formDate.reset();
             this.formTime.reset();
             return;
           }
-          this.snackBarService.addMessage('Oups, you are not allowed to take this slot...');
+          this.snackBarService.addMessage(Constants.NOT_ALLOWED_SLOT);
         }, errorMessage => this.snackBarService.addMessage(errorMessage.error.error)
       );
   }
